@@ -229,7 +229,7 @@
                     <artifactId>maven-release-plugin</artifactId>
                     <version>3.3.1</version>
                     <configuration>
-                        <scmId>github</scmId>
+                        <serverId>github</serverId>
                         <scmCommentPrefix>[Release]</scmCommentPrefix>
                         <tagNameFormat>authify-${project.version}-RELEASE</tagNameFormat>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
