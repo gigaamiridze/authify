@@ -35,6 +35,9 @@
         <project.build.sourceEncoding>${project.encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
 
+        <scm.url>https://github.com/gigaamiridze/authify.git</scm.url>
+        <scm.connection>scm:git:${scm.url}</scm.connection>
+
         <spring-boot.version>3.5.7</spring-boot.version>
         <jjwt.version>0.13.0</jjwt.version>
         <lombok.version>1.18.42</lombok.version>
@@ -44,8 +47,8 @@
     </properties>
 
     <scm>
-        <connection>scm:git:https://github.com/gigaamiridze/authify.git</connection>
-        <developerConnection>scm:git:https://github.com/gigaamiridze/authify.git</developerConnection>
+        <connection>${scm.connection}</connection>
+        <developerConnection>${scm.connection}</developerConnection>
         <url>${project.url}</url>
         <tag>HEAD</tag>
     </scm>
@@ -226,6 +229,7 @@
                     <artifactId>maven-release-plugin</artifactId>
                     <version>3.3.1</version>
                     <configuration>
+                        <scmId>github</scmId>
                         <scmCommentPrefix>[Release]</scmCommentPrefix>
                         <tagNameFormat>authify-${project.version}-RELEASE</tagNameFormat>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
