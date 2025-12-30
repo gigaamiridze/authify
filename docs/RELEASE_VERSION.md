@@ -60,8 +60,6 @@ This command will:
 - Update pom.xml to the next development version
 - Commit the development version
 
-The commits and tags are created locally but not automatically pushed to the remote repository.
-
 #### 4. Perform the Release
 
 Build and deploy the release artifacts from the tagged version:
