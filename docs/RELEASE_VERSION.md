@@ -74,27 +74,10 @@ This will:
 
 #### 5. Verify the Release
 
-Before pushing to the remote repository:
-
 - Check that the artifacts were deployed correctly
 - Verify the release tag exists: `git tag -l`
 - Review the release commits: `git log`
 - Ensure the version in pom.xml is the expected development version
-
-#### 6. Push Commits and Tags
-
-After verifying everything locally, push the commits and tags to the remote repository:
-
-```sh
-git push origin main
-git push origin --tags
-```
-
-Alternatively, push both in a single command:
-
-```sh
-git push origin main --follow-tags
-```
 
 ### Rollback Procedure
 
