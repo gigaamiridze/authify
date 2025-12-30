@@ -42,7 +42,6 @@ This will:
 - Validate that there are no SNAPSHOT dependencies
 - Check that the working directory is clean
 - Simulate version updates in pom.xml
-- Show what commits and tags would be created
 
 Review the output carefully. If everything looks correct, run `mvn release:clean` and proceed to the actual release preparation.
 
