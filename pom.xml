@@ -229,7 +229,7 @@
                         <scmCommentPrefix>[Release]</scmCommentPrefix>
                         <tagNameFormat>authify-${project.version}-RELEASE</tagNameFormat>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
-                        <pushChanges>false</pushChanges>
+                        <pushChanges>true</pushChanges>
                         <goals>clean verify</goals>
                         <arguments>-DskipTests</arguments>
                     </configuration>
