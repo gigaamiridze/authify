@@ -1,0 +1,5 @@
+ALTER TABLE system_users
+ALTER COLUMN verify_otp TYPE VARCHAR(8);
+
+ALTER TABLE system_users
+ALTER COLUMN reset_otp TYPE VARCHAR(8);

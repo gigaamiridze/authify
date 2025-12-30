@@ -1,0 +1,118 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: authify
+
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:authify}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      minimum-idle: 50
+      maximum-pool-size: 150
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  mail:
+    host: ${SMTP_MAIL_HOST:smtp.gmail.com}
+    port: ${SMTP_MAIL_PORT:587}
+    username: ${SMTP_MAIL_USERNAME}
+    password: ${SMTP_MAIL_PASSWORD}
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
+          auth: true
+          starttls:
+            enable: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,metrics"
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  info:
+    build:
+      enabled: true
+
+authify:
+  version: @project.version@
+  shutdown-token: ${SHUTDOWN_TOKEN}
+  core:
+    jwt:
+      issuer: authify
+      key-alias: ${JWT_KEYSTORE_ALIAS:authify}
+      key-store-path: ${JWT_KEYSTORE_PATH:keys/jwt-keystore.p12}
+      key-store-type: ${JWT_KEYSTORE_TYPE:PKCS12}
+      key-store-password: ${JWT_KEYSTORE_PASSWORD}
+      private-key-passphrase: ${JWT_KEYSTORE_PRIVATE_KEY_PASSPHRASE}
+      access-token-expiration: ${JWT_ACCESS_TOKEN_EXPIRATION_TIME:15m}
+      refresh-token-expiration: ${JWT_REFRESH_TOKEN_EXPIRATION_TIME:7d}
+
+    otp:
+      reset:
+        length: 6
+        expiration: 15m
+      verify:
+        length: 6
+        expiration: 1d
+
+    cors:
+      allowed-origins:
+        - scheme: http
+          host: localhost
+          port: 3000
+
+        - scheme: http
+          host: localhost
+          port: 5173
+
+    openapi:
+      title: "Authify API Documentation"
+      description: "A comprehensive REST API specification for Authify, providing secure endpoints for user registration, authentication, token management, and account recovery. This documentation describes request/response formats, validation rules, and error handling to ensure smooth integration with Authify services."
+      contact:
+        name: "Authify Team"
+        email: "support@authify.com"
+        url: "https://authify.com"
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+
+info:
+  app:
+    name: ${spring.application.name:authify}
+    version: ${authify.version:unknown}
+    description: "Authify - Secure authentication and user management service"

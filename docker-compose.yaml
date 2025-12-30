@@ -1,0 +1,58 @@
+services:
+  authify-db:
+    container_name: authify-db
+    image: postgres:18-alpine
+    restart: unless-stopped
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    env_file:
+      - environment/env.db
+    volumes:
+      - type: volume
+        source: authify-postgres-data
+        target: /var/lib/postgresql
+    networks:
+      - authify-net
+
+  authify-core:
+    container_name: authify-core
+    image: authify-core:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+      - "8888:8888"
+    depends_on:
+      authify-db:
+        condition: service_healthy
+    env_file:
+      - environment/env.server
+    networks:
+      - authify-net
+
+  authify-ui:
+    container_name: authify-ui
+    image: authify-ui:latest
+    build:
+      context: ./authify-ui
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    env_file:
+      - ./authify-ui/.env
+    networks:
+      - authify-net
+
+volumes:
+  authify-postgres-data:
+    name: authify-postgres-data
+
+networks:
+  authify-net:
+    name: authify-net
