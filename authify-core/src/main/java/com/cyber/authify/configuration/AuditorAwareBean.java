@@ -1,21 +1,20 @@
 package com.cyber.authify.configuration;
 
-import com.cyber.authify.utils.security.AuthenticationUtils;
-import com.cyber.authify.utils.string.StringUtils;
+import com.cyber.authify.service.auth.AuthenticationContextService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-import static com.cyber.authify.utils.constants.Constants.SYSTEM_USERNAME;
-
 @Component
 public class AuditorAwareBean implements AuditorAware<String> {
 
+    @Autowired
+    private AuthenticationContextService authenticationContextService;
+
     @Override
     public Optional<String> getCurrentAuditor() {
-        String name = AuthenticationUtils.getAuthenticatedUserName();
-        String auditor = StringUtils.getOrDefault(name, SYSTEM_USERNAME);
-        return Optional.of(auditor);
+        return Optional.of(authenticationContextService.getCurrentUsernameOrSystem());
     }
 }

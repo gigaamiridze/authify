@@ -1,4 +1,4 @@
-package com.cyber.authify.utils.provider;
+package com.cyber.authify.provider;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

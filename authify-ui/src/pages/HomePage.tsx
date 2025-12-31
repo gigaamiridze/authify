@@ -9,7 +9,6 @@ const { Title, Paragraph } = Typography;
 
 function HomePage() {
   const { isLoadingAuth, isAuthenticated, user } = useAuth();
-  console.log(isAuthenticated);
   const navigate = useNavigate();
 
   return (

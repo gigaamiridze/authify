@@ -2,7 +2,7 @@ package com.cyber.authify.authentication.handler;
 
 import com.cyber.authify.model.dto.ErrorInfo;
 import com.cyber.authify.model.enums.ErrorCode;
-import com.cyber.authify.utils.provider.ObjectMapperProvider;
+import com.cyber.authify.provider.ObjectMapperProvider;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
