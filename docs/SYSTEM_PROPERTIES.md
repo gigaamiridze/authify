@@ -19,3 +19,8 @@ This document provides detailed information of all custom system properties used
 | `authify.core.otp.verify.length`            | Length of OTP for verification.                                                   | None                                  | `6`                                |
 | `authify.core.otp.verify.expiration`        | OTP expiration for verification.                                                  | None                                  | `1d`                               |
 | `authify.core.cors.allowed-origins`         | Allowed origins for CORS requests. Can be customized per environment.             | None                                  | `localhost:3000`, `localhost:5173` |
+| `authify.core.openapi.title`                | OpenAPI documentation title displayed in Swagger UI.                              | None                                  | `Authify API Documentation`        |
+| `authify.core.openapi.description`          | Detailed OpenAPI description explaining API purpose, features, and usage.         | None                                  | API description text               |
+| `authify.core.openapi.contact.name`         | Contact name shown in OpenAPI documentation.                                      | None                                  | `Authify Team`                     |
+| `authify.core.openapi.contact.email`        | Contact email shown in OpenAPI documentation.                                     | None                                  | `support@authify.com`              |
+| `authify.core.openapi.contact.url`          | Contact URL shown in OpenAPI documentation.                                       | None                                  | `https://authify.com`              |
